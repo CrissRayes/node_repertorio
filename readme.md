@@ -30,7 +30,6 @@ $npm start
 ### Endpoints
 
 - GET /canciones
-- GET /canciones/:id
 - POST /canciones
 - PUT /canciones/:id
 - DELETE /canciones/:id
