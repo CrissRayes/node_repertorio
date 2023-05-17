@@ -26,7 +26,13 @@ app.get( "/canciones", ( req, res ) => {
 } )
 
 app.put( "/canciones/:id", ( req, res ) => {
-  // algo para editar las canciones
+  const { id } = req.params
+  const cancion = req.body
+  const canciones = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
+  const index = canciones.findIndex( p => p.id == id )
+  canciones[ index ] = cancion
+  fs.writeFileSync( 'repertorio.json', JSON.stringify( canciones ) )
+  res.send( 'Canción modificada con éxito' )
 } )
 
 app.delete( "canciones/:id", ( req, res ) => {

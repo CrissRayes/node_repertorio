@@ -1,10 +1,5 @@
 [
-  {
-    "id": 1,
-    "titulo": "Try walking in my shoes",
-    "artista": "Depeche Mode",
-    "tono": "G"
-  },
+  { "id": "1", "titulo": "Creep", "artista": "Radio Head", "tono": "G" },
   {
     "id": 2,
     "titulo": "Personal Jesus",
