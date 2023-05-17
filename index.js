@@ -27,14 +27,19 @@ app.get( "/canciones", ( req, res ) => {
 
 app.put( "/canciones/:id", ( req, res ) => {
   const { id } = req.params
-  const cancion = req.body
-  const canciones = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
-  const index = canciones.findIndex( p => p.id == id )
-  canciones[ index ] = cancion
-  fs.writeFileSync( 'repertorio.json', JSON.stringify( canciones ) )
+  const song = req.body
+  const songs = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
+  const index = songs.findIndex( p => p.id == id )
+  songs[ index ] = song
+  fs.writeFileSync( 'repertorio.json', JSON.stringify( songs ) )
   res.send( 'Canción modificada con éxito' )
 } )
 
-app.delete( "canciones/:id", ( req, res ) => {
-  // algo para borrar las canciones
+app.delete( "/canciones/:id", ( req, res ) => {
+  const { id } = req.params
+  const songs = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
+  const index = songs.findIndex( p => p.id == id )
+  songs.splice( index, 1 )
+  fs.writeFileSync( 'repertorio.json', JSON.stringify( songs ) )
+  res.send( "Canción eliminada con éxito" )
 } )
