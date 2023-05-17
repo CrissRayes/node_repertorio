@@ -13,13 +13,13 @@ El servidor corre en el puerto localhost:3000.
 
 ### Instalación
 
-Node v18.16.0
-express ^4.18.2
-nodemon ^2.0.22
-
 ```
 $ npm install
 ```
+
+- node v18.16.0
+- express ^4.18.2
+- nodemon ^2.0.22
 
 ### Iniciar el servidor
 
