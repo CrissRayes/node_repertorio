@@ -124,6 +124,11 @@
       tono: tono.value,
     };
     console.log( data );
+    // TODO: Validar que la data no esté vacía
+    if ( data.titulo == "" || data.artista == "" || data.tono == "" ) {
+      alert( "Debe llenar todos los campos" );
+      return;
+    }
     axios.post( url, data ).then( () => getData() );
   }
 

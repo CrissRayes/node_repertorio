@@ -1,9 +1,1 @@
-[
-  { "id": 9583, "titulo": "My Way", "artista": "Frank Sinatra", "tono": "G" },
-  {
-    "id": 8232,
-    "titulo": "Try walking in my shoes",
-    "artista": "Depeche Mode",
-    "tono": "D"
-  }
-]
+[{"id":9583,"titulo":"My Way","artista":"Frank Sinatra","tono":"G"},{"id":8232,"titulo":"Try walking in my shoes","artista":"Depeche Mode","tono":"D"}]
