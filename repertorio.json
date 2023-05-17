@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1,
+    "titulo": "Try walking in my shoes",
+    "artista": "Depeche Mode",
+    "tono": "G"
+  },
+  {
+    "id": 2,
+    "titulo": "Personal Jesus",
+    "artista": "Depeche Mode",
+    "tono": "D"
+  }
+]
