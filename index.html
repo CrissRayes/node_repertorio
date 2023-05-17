@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Mi Repertorio</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
 </head>
@@ -12,7 +12,6 @@
 <body>
   <div id="AgregarCancion">
     <h2 class="pt-3">&#119070; Mi repertorio &#119070;</h2>
-
     <div class="container pt-5 w-50">
       <div>
         <div class="form-group row">
@@ -33,12 +32,20 @@
             <input type="text" class="form-control" id="tono" value="Em" />
           </div>
         </div>
-        <button onclick="nuevaCancion()" id="agregar" class="m-auto btn btn-success">
-          Agregar
-        </button>
-        <button onclick="editarCancion()" id="editar" class="m-auto btn btn-info">
-          Editar
-        </button>
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="btn-group col-sm-10">
+            <button onclick="nuevaCancion()" id="agregar" class="m-auto btn btn-success">
+              Agregar
+            </button>
+            <button onclick="editarCancion()" id="editar" class="m-auto btn btn-info" style="display: none;">
+              Editar
+            </button>
+            <button onclick="cancelar()" id="cancelar" class="m-auto btn btn-danger" style="display: none;">
+              Cancelar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -46,7 +53,6 @@
     <hr />
     <hr />
     <h2>Tabla de canciones &#127908;</h2>
-
     <div class="container pt-5 w-75">
       <table class="table table-dark">
         <thead>
@@ -72,6 +78,13 @@
     text-align: center;
     background: #283593;
     color: white;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
   }
 </style>
 
@@ -124,7 +137,6 @@
       tono: tono.value,
     };
     console.log( data );
-    // TODO: Validar que la data no esté vacía
     if ( data.titulo == "" || data.artista == "" || data.tono == "" ) {
       alert( "Debe llenar todos los campos" );
       return;
@@ -148,6 +160,7 @@
       .setAttribute( "onclick", `editarCancion('${ id }')` );
     document.getElementById( "agregar" ).style.display = "none";
     document.getElementById( "editar" ).style.display = "block";
+    document.getElementById( "cancelar" ).style.display = "block";
   }
 
   function editarCancion ( id ) {
@@ -162,6 +175,17 @@
         getData();
         document.getElementById( "agregar" ).style.display = "block";
         document.getElementById( "editar" ).style.display = "none";
+        document.getElementById( "cancelar" ).style.display = "none";
       } );
+  }
+
+  function cancelar () {
+    document.getElementById( "agregar" ).style.display = "block";
+    document.getElementById( "editar" ).style.display = "none";
+    // limpiar campos
+    cancion.value = "";
+    artista.value = "";
+    tono.value = "";
+    document.getElementById( "cancelar" ).style.display = "none";
   }
 </script>

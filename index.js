@@ -1,12 +1,15 @@
-const fs = require( 'fs' )
+require( 'dotenv' ).config()
 const express = require( 'express' )
 const app = express()
+const fs = require( 'fs' )
+const cors = require( 'cors' )
 
-const PORT = 3000
-
-app.listen( PORT, console.log( `Servidor encendido en: http://localhost:${ PORT }` ) )
+const port = process.env.PORT || 3000
+app.listen( port, console.log( `Servidor encendido en: http://localhost:${ port }` ) )
 
 app.use( express.json() )
+app.use( cors() )
+
 
 app.get( "/", ( req, res ) => {
   res.sendFile( __dirname + "/index.html" )
@@ -17,12 +20,12 @@ app.post( "/canciones", ( req, res ) => {
   const songs = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
   songs.push( song )
   fs.writeFileSync( 'repertorio.json', JSON.stringify( songs ) )
-  res.send( 'Canción agregada exitósamente' )
+  res.status( 201 ).send( 'Canción agregada exitósamente' )
 } )
 
 app.get( "/canciones", ( req, res ) => {
   const songs = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
-  res.json( songs )
+  res.status( 200 ).json( songs )
 } )
 
 app.put( "/canciones/:id", ( req, res ) => {
@@ -32,7 +35,7 @@ app.put( "/canciones/:id", ( req, res ) => {
   const index = songs.findIndex( p => p.id == id )
   songs[ index ] = song
   fs.writeFileSync( 'repertorio.json', JSON.stringify( songs ) )
-  res.send( 'Canción modificada con éxito' )
+  res.status( 200 ).send( 'Canción modificada con éxito' )
 } )
 
 app.delete( "/canciones/:id", ( req, res ) => {
@@ -41,5 +44,12 @@ app.delete( "/canciones/:id", ( req, res ) => {
   const index = songs.findIndex( p => p.id == id )
   songs.splice( index, 1 )
   fs.writeFileSync( 'repertorio.json', JSON.stringify( songs ) )
-  res.send( "Canción eliminada con éxito" )
+  res.status( 200 ).send( "Canción eliminada con éxito" )
+} )
+
+app.get( "/canciones/:id", ( req, res ) => {
+  const { id } = req.params
+  const songs = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
+  const song = songs.find( p => p.id == id )
+  res.status( 200 ).json( song )
 } )
