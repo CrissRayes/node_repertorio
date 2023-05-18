@@ -47,6 +47,7 @@ app.delete( "/canciones/:id", ( req, res ) => {
   res.status( 200 ).send( "Canción eliminada con éxito" )
 } )
 
+// Esta ruta es solo para efectos de practica y no esta siendo utilizada en el proyecto
 app.get( "/canciones/:id", ( req, res ) => {
   const { id } = req.params
   const songs = JSON.parse( fs.readFileSync( 'repertorio.json' ) )
